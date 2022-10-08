@@ -6,6 +6,7 @@ import 'package:notes/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:notes/application/notes/note_form/note_form_bloc.dart';
 import 'package:notes/application/notes/note_watcher/note_watcher_bloc.dart';
 import 'package:notes/application/theme/theme_bloc.dart';
+import 'package:notes/themes.dart';
 
 import '../../injection.dart';
 import '../routes/app_router.dart';
@@ -28,17 +29,21 @@ class AppWidget extends StatelessWidget {
           BlocProvider(create: (context) => getIt<ThemeBloc>()),
           BlocProvider(create: (context) => getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested())),
         ],
-        child: MaterialApp.router(
-          // easy localization
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          theme: ThemeData.light(),
-          routerDelegate: _appRouter.delegate(),
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          debugShowCheckedModeBanner: false,
-          // todo rename
-          title: 'Material App',
+        child: BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              // easy localization
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: appThemes[context.read<ThemeBloc>().state.currentAppTheme],
+              routerDelegate: _appRouter.delegate(),
+              routeInformationParser: _appRouter.defaultRouteParser(),
+              debugShowCheckedModeBanner: false,
+              // todo rename
+              title: 'Notes',
+            );
+          },
         ),
       );
   }

@@ -26,17 +26,15 @@ class HomePage extends StatelessWidget {
                       GFCard(),
                       GFCard(),
                       GFButton(
-                          child: Text("Switch to green"),
+                          child: Text("Switch to light"),
                           onPressed: () {
-                            context.read<ThemeBloc>().add(
-                                const ThemeEvent.themeChanged(AppTheme.green));
+                            context.read<ThemeBloc>().add(const ThemeEvent.themeChanged(AppTheme.light));
                           }
                       ),
                       GFButton(
-                          child: Text("Switch to orange"),
+                          child: Text("Switch to dark"),
                           onPressed: () {
-                            context.read<ThemeBloc>().add(
-                                const ThemeEvent.themeChanged(AppTheme.orange));
+                            context.read<ThemeBloc>().add(const ThemeEvent.themeChanged(AppTheme.dark));
                           }
                       )
                     ],
