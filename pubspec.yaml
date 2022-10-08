@@ -60,6 +60,6 @@ flutter:
   uses-material-design: true
   # to be able to read from app_config.json
   assets:
-    - config/
-    - assets/
+#    - config/
+#    - assets/
     - lang/
