@@ -21,8 +21,9 @@ class _SplashPageState extends State<SplashPage> {
       listener: (context, state){
         state.map(
           initial: (_) => null,
+          // todo route properly
           authenticated: (_) => AutoRouter.of(context).replace(const HomePageRoute()),
-          unAuthenticated: (_) => AutoRouter.of(context).replace(const SignInPageRoute()),
+          unAuthenticated: (_) => AutoRouter.of(context).replace(const HomePageRoute()),
         );
       },
       child: const Scaffold(

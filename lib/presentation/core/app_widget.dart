@@ -5,6 +5,7 @@ import 'package:notes/application/auth/auth_bloc.dart';
 import 'package:notes/application/notes/note_actor/note_actor_bloc.dart';
 import 'package:notes/application/notes/note_form/note_form_bloc.dart';
 import 'package:notes/application/notes/note_watcher/note_watcher_bloc.dart';
+import 'package:notes/application/theme/theme_bloc.dart';
 
 import '../../injection.dart';
 import '../routes/app_router.dart';
@@ -24,14 +25,15 @@ class AppWidget extends StatelessWidget {
           BlocProvider(create: (context) => getIt<NoteActorBloc>()),
           BlocProvider(create: (context) => getIt<NoteFormBloc>()),
           BlocProvider(create: (context) => getIt<NoteWatcherBloc>()),
-          BlocProvider(create: (context) => getIt<AuthBloc>()),
+          BlocProvider(create: (context) => getIt<ThemeBloc>()),
+          BlocProvider(create: (context) => getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested())),
         ],
         child: MaterialApp.router(
           // easy localization
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          theme: ThemeData.dark(),
+          theme: ThemeData.light(),
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
           debugShowCheckedModeBanner: false,
