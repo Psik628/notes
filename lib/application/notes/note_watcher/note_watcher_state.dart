@@ -1,6 +1,9 @@
 part of 'note_watcher_bloc.dart';
 
-@immutable
-abstract class NoteWatcherState {}
-
-class NoteWatcherInitial extends NoteWatcherState {}
+@freezed
+class NoteWatcherState with _$NoteWatcherState{
+  const factory NoteWatcherState.initial() = Initial;
+  const factory NoteWatcherState.loadInProgress() = LoadInProgress;
+  const factory NoteWatcherState.loadSuccess(List<Note> notes) = LoadSuccess;
+  const factory NoteWatcherState.loadFailure(NoteFailure noteFailure) = LoadFailure;
+}

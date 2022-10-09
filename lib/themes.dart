@@ -12,10 +12,11 @@ enum AppTheme{
 final appThemes = <AppTheme, ThemeData>{
   AppTheme.light: ThemeData(
     brightness: Brightness.light,
-    primaryColor: Colors.green
+    cardColor: Colors.green,
+
   ),
   AppTheme.dark: ThemeData(
       brightness: Brightness.dark,
-      primaryColor: Colors.red
+      cardColor: Colors.red
   ),
 };

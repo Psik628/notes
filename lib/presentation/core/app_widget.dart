@@ -36,7 +36,7 @@ class AppWidget extends StatelessWidget {
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
               locale: context.locale,
-              theme: appThemes[context.read<ThemeBloc>().state.currentAppTheme],
+              theme: appThemes[state.currentAppTheme],
               routerDelegate: _appRouter.delegate(),
               routeInformationParser: _appRouter.defaultRouteParser(),
               debugShowCheckedModeBanner: false,

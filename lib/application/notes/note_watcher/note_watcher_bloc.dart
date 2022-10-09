@@ -1,15 +1,47 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:notes/domain/note/note.dart';
+import 'package:notes/domain/note/note_failure.dart';
+
+import '../../../domain/note/i_note_repository.dart';
+import '../../../logging.dart';
 
 part 'note_watcher_event.dart';
 part 'note_watcher_state.dart';
+part 'note_watcher_bloc.freezed.dart';
 
 class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
-  NoteWatcherBloc() : super(NoteWatcherInitial()) {
-    on<NoteWatcherEvent>((event, emit) {
-      // TODO: implement event handler
+
+  final log = logger(NoteWatcherBloc);
+
+  final INoteRepository _noteRepository;
+
+  StreamSubscription<Either<NoteFailure, List<Note>>>? _notesStreamSubscription;
+
+  NoteWatcherBloc(this._noteRepository) : super(const NoteWatcherState.initial()) {
+    on<WatchAllStarted>((event, emit) async {
+      emit(const NoteWatcherState.loadInProgress());
+      await _notesStreamSubscription?.cancel();
+      _notesStreamSubscription = _noteRepository.watchAll().listen(
+        (failureOrSubjects) {
+          add(NoteWatcherEvent.notesReceived(failureOrSubjects));
+        },
+      );
+    });
+
+    on<NotesReceived>((NotesReceived event, emit) async {
+      event.failureOrSubjects.fold(
+        (NoteFailure failure) => {
+          emit(NoteWatcherState.loadFailure(failure))
+        },
+        (List<Note> notes) => {
+          emit(NoteWatcherState.loadSuccess(notes))
+        }
+      );
     });
   }
 }

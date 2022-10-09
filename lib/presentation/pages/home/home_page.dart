@@ -20,11 +20,20 @@ class HomePage extends StatelessWidget {
                   return Column(
                     children: [
                       GFCard(
-                        color: appThemes[state.currentAppTheme]!.primaryColor,
+                        color: Theme.of(context).cardColor,
+                        title: GFListTile(
+                          titleText: 'nakoupit brambory',
+                        ),
                       ),
-                      GFCard(),
-                      GFCard(),
-                      GFCard(),
+                      GFCard(
+                        color: Theme.of(context).cardColor,
+                      ),
+                      GFCard(
+                        color: Theme.of(context).cardColor,
+                      ),
+                      GFCard(
+                        color: Theme.of(context).cardColor,
+                      ),
                       GFButton(
                           child: Text("Switch to light"),
                           onPressed: () {

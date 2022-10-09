@@ -3,10 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:notes/presentation/core/app_widget.dart';
 
+import 'environment.dart';
 import 'firebase_options.dart';
 import 'injection.dart';
 
-Future<void> mainCommon(String env) async {
+Future<void> mainCommon(Environment env) async {
   // can access env variable to set specific properties to dev/prod mode
 
   WidgetsFlutterBinding.ensureInitialized();
