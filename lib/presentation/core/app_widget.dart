@@ -23,9 +23,6 @@ class AppWidget extends StatelessWidget {
       MultiBlocProvider(
         providers: [
           // check if user is signed in as soon as possible
-          BlocProvider(create: (context) => getIt<NoteActorBloc>()),
-          BlocProvider(create: (context) => getIt<NoteFormBloc>()),
-          BlocProvider(create: (context) => getIt<NoteWatcherBloc>()),
           BlocProvider(create: (context) => getIt<ThemeBloc>()),
           BlocProvider(create: (context) => getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested())),
         ],

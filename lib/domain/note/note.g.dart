@@ -129,6 +129,7 @@ abstract class NoteDocumentReference
   Future<void> update({
     String title,
     String? content,
+    bool star,
     DateTime? deadline,
   });
 
@@ -139,6 +140,7 @@ abstract class NoteDocumentReference
     Transaction transaction, {
     String title,
     String? content,
+    bool star,
     DateTime? deadline,
   });
 }
@@ -189,11 +191,13 @@ class _$NoteDocumentReference
   Future<void> update({
     Object? title = _sentinel,
     Object? content = _sentinel,
+    Object? star = _sentinel,
     Object? deadline = _sentinel,
   }) async {
     final json = {
       if (title != _sentinel) 'title': title as String,
       if (content != _sentinel) 'content': content as String?,
+      if (star != _sentinel) 'star': star as bool,
       if (deadline != _sentinel) 'deadline': deadline as DateTime?,
     };
 
@@ -204,11 +208,13 @@ class _$NoteDocumentReference
     Transaction transaction, {
     Object? title = _sentinel,
     Object? content = _sentinel,
+    Object? star = _sentinel,
     Object? deadline = _sentinel,
   }) {
     final json = {
       if (title != _sentinel) 'title': title as String,
       if (content != _sentinel) 'content': content as String?,
+      if (star != _sentinel) 'star': star as bool,
       if (deadline != _sentinel) 'deadline': deadline as DateTime?,
     };
 
@@ -352,6 +358,17 @@ abstract class NoteQuery implements QueryReference<Note, NoteQuerySnapshot> {
     List<String?>? whereIn,
     List<String?>? whereNotIn,
   });
+  NoteQuery whereStar({
+    bool? isEqualTo,
+    bool? isNotEqualTo,
+    bool? isLessThan,
+    bool? isLessThanOrEqualTo,
+    bool? isGreaterThan,
+    bool? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<bool>? whereIn,
+    List<bool>? whereNotIn,
+  });
   NoteQuery whereDeadline({
     DateTime? isEqualTo,
     DateTime? isNotEqualTo,
@@ -394,6 +411,18 @@ abstract class NoteQuery implements QueryReference<Note, NoteQuerySnapshot> {
     String? startAfter,
     String? endAt,
     String? endBefore,
+    NoteDocumentSnapshot? startAtDocument,
+    NoteDocumentSnapshot? endAtDocument,
+    NoteDocumentSnapshot? endBeforeDocument,
+    NoteDocumentSnapshot? startAfterDocument,
+  });
+
+  NoteQuery orderByStar({
+    bool descending = false,
+    bool startAt,
+    bool startAfter,
+    bool endAt,
+    bool endBefore,
     NoteDocumentSnapshot? startAtDocument,
     NoteDocumentSnapshot? endAtDocument,
     NoteDocumentSnapshot? endBeforeDocument,
@@ -670,6 +699,35 @@ class _$NoteQuery extends QueryReference<Note, NoteQuerySnapshot>
     );
   }
 
+  NoteQuery whereStar({
+    bool? isEqualTo,
+    bool? isNotEqualTo,
+    bool? isLessThan,
+    bool? isLessThanOrEqualTo,
+    bool? isGreaterThan,
+    bool? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<bool>? whereIn,
+    List<bool>? whereNotIn,
+  }) {
+    return _$NoteQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        'star',
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
   NoteQuery whereDeadline({
     DateTime? isEqualTo,
     DateTime? isNotEqualTo,
@@ -915,6 +973,78 @@ class _$NoteQuery extends QueryReference<Note, NoteQuerySnapshot>
     );
   }
 
+  NoteQuery orderByStar({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    NoteDocumentSnapshot? startAtDocument,
+    NoteDocumentSnapshot? endAtDocument,
+    NoteDocumentSnapshot? endBeforeDocument,
+    NoteDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy('star',
+        descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$NoteQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
   NoteQuery orderByDeadline({
     bool descending = false,
     Object? startAt = _sentinel,
@@ -1039,10 +1169,12 @@ Note _$NoteFromJson(Map<String, dynamic> json) => Note(
       title: json['title'] as String,
       content: json['content'] as String?,
       deadline: dateTimeFromTimeStamp(json['deadline']),
+      star: json['star'] as bool,
     );
 
 Map<String, dynamic> _$NoteToJson(Note instance) => <String, dynamic>{
       'title': instance.title,
       'content': instance.content,
+      'star': instance.star,
       'deadline': dateTimeToTimeStamp(instance.deadline),
     };

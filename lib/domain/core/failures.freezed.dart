@@ -522,7 +522,7 @@ abstract class ShortPassword<T> implements ValueFailure<T> {
 //     return orElse();
 //   }
 // }
-
+//
 // abstract class ShortPassword<T> implements ValueFailure<T> {
 //   const factory ShortPassword({required final T failedValue}) =
 //       _$ShortPassword<T>;

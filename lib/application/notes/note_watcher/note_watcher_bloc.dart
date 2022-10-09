@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:notes/domain/note/note.dart';
 import 'package:notes/domain/note/note_failure.dart';
@@ -14,6 +15,7 @@ part 'note_watcher_event.dart';
 part 'note_watcher_state.dart';
 part 'note_watcher_bloc.freezed.dart';
 
+@injectable
 class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
 
   final log = logger(NoteWatcherBloc);

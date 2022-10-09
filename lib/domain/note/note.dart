@@ -10,10 +10,11 @@ part 'note.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Note{
 
-  Note({required this.title, this.content, this.deadline});
+  Note({required this.title, this.content, this.deadline, required this.star});
 
   String title;
   String? content;
+  bool star;
   @JsonKey(
       name: "deadline",
       fromJson: dateTimeFromTimeStamp,
