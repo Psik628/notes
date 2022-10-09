@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:notes/presentation/pages/onboarding/onboarding_page.dart';
 
 import '../pages/home/home_page.dart';
 import '../pages/sign_in/sign_in_page.dart';
@@ -9,7 +10,7 @@ part 'app_router.gr.dart';
 
 @MaterialAutoRouter(
   routes: [
-    MaterialRoute(page: SplashPage, initial: true),
+    MaterialRoute(page: OnBoardingPage, initial: true),
     MaterialRoute(page: SignInPage),
     // MaterialRoute(page: SignUpPage),
     MaterialRoute(page: HomePage),

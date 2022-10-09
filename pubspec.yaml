@@ -44,6 +44,8 @@ dependencies:
   fl_chart: ^0.55.2
   logger: ^1.1.0
   flutter_slidable: 2.0.0
+  responsive_framework: ^0.2.0
+  introduction_screen: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,6 @@ flutter:
   uses-material-design: true
   # to be able to read from app_config.json
   assets:
-#    - config/
-#    - assets/
+    - config/
+    - assets/
     - lang/
