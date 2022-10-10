@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:notes/application/theme/theme_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:notes/presentation/ui_constants.dart';
+import 'package:notes/translations_constants.dart';
 import '../../../application/notes/note_actor/note_actor_bloc.dart';
 import '../../../application/notes/note_form/note_form_bloc.dart';
 import '../../../application/notes/note_watcher/note_watcher_bloc.dart';
@@ -33,7 +35,7 @@ class HomePage extends StatelessWidget {
                         loadInProgress: (_) => const GFLoader(),
                         loadFailure: (LoadFailure value) {
                           // todo return failure UI
-                          return const GFLoader(type: GFLoaderType.android);
+                          return const GFLoader(type: GFLoaderType.ios);
                         },
                         loadSuccess: (LoadSuccess state) {
                           return ListView.builder(
@@ -46,31 +48,31 @@ class HomePage extends StatelessWidget {
                                   dismissible: DismissiblePane(onDismissed: () {
                                     context.read<NoteActorBloc>().add(NoteActorEvent.deleted(state.notes[noteIndex]));
                                   }),
-                                  children: const [
+                                  children: [
                                     SlidableAction(
                                       onPressed: null,
-                                      backgroundColor: Color(0xFFFE4A49),
+                                      backgroundColor: const Color(0xFFFE4A49),
                                       foregroundColor: Colors.white,
                                       icon: Icons.delete,
-                                      label: 'Delete',
+                                      label: TranslationsConstants.delete.tr(),
                                     ),
                                   ],
                                 ),
-                                endActionPane: const ActionPane(
+                                endActionPane: ActionPane(
                                   motion: DrawerMotion(),
                                   children: [
                                     SlidableAction(
                                       onPressed: null,
-                                      backgroundColor: Color(0xFFFE4A49),
+                                      backgroundColor: const Color(0xFFFE4A49),
                                       foregroundColor: Colors.white,
-                                      icon: Icons.delete,
-                                      label: 'Delete',
+                                      icon: Icons.star,
+                                      label: TranslationsConstants.star.tr(),
                                     ),
                                   ],
                                 ),
                                 child: Card(
                                     child: ListTile(
-                                      leading: Icon(Icons.add),
+                                      leading: const Icon(Icons.add),
                                       title: Text(state.notes[noteIndex].title),
                                       subtitle: Column(
                                         children: [
@@ -78,7 +80,7 @@ class HomePage extends StatelessWidget {
                                           state.notes[noteIndex].deadline != null ? Text(state.notes[noteIndex].deadline!.toString()) : const Offstage(),
                                         ],
                                       ),
-                                      trailing: Icon(Icons.arrow_left),
+                                      trailing: const Icon(Icons.arrow_left),
                                     )
                                 ),
                               );

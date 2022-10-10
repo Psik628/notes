@@ -1296,7 +1296,6 @@ class NoteQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot<Note>
 // **************************************************************************
 
 Note _$NoteFromJson(Map<String, dynamic> json) => Note(
-      id: json['id'] as String,
       title: json['title'] as String,
       content: json['content'] as String?,
       deadline: dateTimeFromTimeStamp(json['deadline']),

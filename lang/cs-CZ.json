@@ -20,5 +20,8 @@
   "onboardingTitle3": "Nejlepší todo list3",
   "onboardingTitle4": "Nejlepší todo list4",
   "onboardingTitle5": "Nejlepší todo list5",
-  "onboardingTitle6": "Nejlepší todo list6"
+  "onboardingTitle6": "Nejlepší todo list6",
+
+  "delete": "Smazat",
+  "star": "Favorizovat"
 }

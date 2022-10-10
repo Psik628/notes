@@ -73,16 +73,12 @@ class NoteRepository extends INoteRepository{
         .map((snapshot){
       return right<NoteFailure, List<Note>>(
           snapshot.docs.map<Note>((NoteQueryDocumentSnapshot noteQueryDocumentSnapshot){
-            // filing Note object with data and id
             Note completedNote = noteQueryDocumentSnapshot.data;
-            // completedNote.id = noteQueryDocumentSnapshot.id;
+            completedNote.id = noteQueryDocumentSnapshot.id;
             return completedNote;
           }).toList()
       );
     }).onErrorReturnWith((error, stackTrace){
-      log.e('Watch all error');
-      if(error is FirebaseException) print(error.message);
-
       // todo implement onError functionality and null check !
       if (error is FirebaseException && error.message!.contains('PERMISSION_DENIED')) {
         return left(const NoteFailure.insufficientPermission());

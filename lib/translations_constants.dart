@@ -29,4 +29,7 @@ class TranslationsConstants{
   static const onboardingTitle4 = 'onboardingTitle4';
   static const onboardingTitle5 = 'onboardingTitle5';
   static const onboardingTitle6 = 'onboardingTitle6';
+
+  static const delete = 'delete';
+  static const star = 'star';
 }
