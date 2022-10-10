@@ -6,4 +6,6 @@ class NoteActorState with _$NoteActorState {
   const factory NoteActorState.actionInProgress() = ActionInProgress;
   const factory NoteActorState.deleteFailure(NoteFailure noteFailure) = DeleteFailure;
   const factory NoteActorState.deleteSuccess() = DeleteSuccess;
+  const factory NoteActorState.starSuccess() = StarSuccess;
+  const factory NoteActorState.starFailure(NoteFailure noteFailure) = StarFailure;
 }

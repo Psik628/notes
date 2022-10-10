@@ -20,32 +20,38 @@ mixin _$NoteActorEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Note note) deleted,
+    required TResult Function(Note note) starred,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Note note)? deleted,
+    TResult Function(Note note)? starred,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Note note)? deleted,
+    TResult Function(Note note)? starred,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Deleted value) deleted,
+    required TResult Function(Starred value) starred,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Deleted value)? deleted,
+    TResult Function(Starred value)? starred,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Deleted value)? deleted,
+    TResult Function(Starred value)? starred,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -150,6 +156,7 @@ class _$Deleted implements Deleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Note note) deleted,
+    required TResult Function(Note note) starred,
   }) {
     return deleted(note);
   }
@@ -158,6 +165,7 @@ class _$Deleted implements Deleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Note note)? deleted,
+    TResult Function(Note note)? starred,
   }) {
     return deleted?.call(note);
   }
@@ -166,6 +174,7 @@ class _$Deleted implements Deleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Note note)? deleted,
+    TResult Function(Note note)? starred,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -178,6 +187,7 @@ class _$Deleted implements Deleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Deleted value) deleted,
+    required TResult Function(Starred value) starred,
   }) {
     return deleted(this);
   }
@@ -186,6 +196,7 @@ class _$Deleted implements Deleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Deleted value)? deleted,
+    TResult Function(Starred value)? starred,
   }) {
     return deleted?.call(this);
   }
@@ -194,6 +205,7 @@ class _$Deleted implements Deleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Deleted value)? deleted,
+    TResult Function(Starred value)? starred,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -215,6 +227,141 @@ abstract class Deleted implements NoteActorEvent {
 }
 
 /// @nodoc
+abstract class _$$StarredCopyWith<$Res>
+    implements $NoteActorEventCopyWith<$Res> {
+  factory _$$StarredCopyWith(_$Starred value, $Res Function(_$Starred) then) =
+      __$$StarredCopyWithImpl<$Res>;
+  @override
+  $Res call({Note note});
+}
+
+/// @nodoc
+class __$$StarredCopyWithImpl<$Res> extends _$NoteActorEventCopyWithImpl<$Res>
+    implements _$$StarredCopyWith<$Res> {
+  __$$StarredCopyWithImpl(_$Starred _value, $Res Function(_$Starred) _then)
+      : super(_value, (v) => _then(v as _$Starred));
+
+  @override
+  _$Starred get _value => super._value as _$Starred;
+
+  @override
+  $Res call({
+    Object? note = freezed,
+  }) {
+    return _then(_$Starred(
+      note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as Note,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Starred implements Starred {
+  const _$Starred(this.note);
+
+  @override
+  final Note note;
+
+  @override
+  String toString() {
+    return 'NoteActorEvent.starred(note: $note)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Starred &&
+            const DeepCollectionEquality().equals(other.note, note));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(note));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$StarredCopyWith<_$Starred> get copyWith =>
+      __$$StarredCopyWithImpl<_$Starred>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Note note) deleted,
+    required TResult Function(Note note) starred,
+  }) {
+    return starred(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Note note)? deleted,
+    TResult Function(Note note)? starred,
+  }) {
+    return starred?.call(note);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Note note)? deleted,
+    TResult Function(Note note)? starred,
+    required TResult orElse(),
+  }) {
+    if (starred != null) {
+      return starred(note);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Deleted value) deleted,
+    required TResult Function(Starred value) starred,
+  }) {
+    return starred(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Deleted value)? deleted,
+    TResult Function(Starred value)? starred,
+  }) {
+    return starred?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Deleted value)? deleted,
+    TResult Function(Starred value)? starred,
+    required TResult orElse(),
+  }) {
+    if (starred != null) {
+      return starred(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Starred implements NoteActorEvent {
+  const factory Starred(final Note note) = _$Starred;
+
+  @override
+  Note get note;
+  @override
+  @JsonKey(ignore: true)
+  _$$StarredCopyWith<_$Starred> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$NoteActorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -222,6 +369,8 @@ mixin _$NoteActorState {
     required TResult Function() actionInProgress,
     required TResult Function(NoteFailure noteFailure) deleteFailure,
     required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -230,6 +379,8 @@ mixin _$NoteActorState {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -238,6 +389,8 @@ mixin _$NoteActorState {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -247,6 +400,8 @@ mixin _$NoteActorState {
     required TResult Function(ActionInProgress value) actionInProgress,
     required TResult Function(DeleteFailure value) deleteFailure,
     required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -255,6 +410,8 @@ mixin _$NoteActorState {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -263,6 +420,8 @@ mixin _$NoteActorState {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -327,6 +486,8 @@ class _$Initial implements Initial {
     required TResult Function() actionInProgress,
     required TResult Function(NoteFailure noteFailure) deleteFailure,
     required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
   }) {
     return initial();
   }
@@ -338,6 +499,8 @@ class _$Initial implements Initial {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
   }) {
     return initial?.call();
   }
@@ -349,6 +512,8 @@ class _$Initial implements Initial {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -364,6 +529,8 @@ class _$Initial implements Initial {
     required TResult Function(ActionInProgress value) actionInProgress,
     required TResult Function(DeleteFailure value) deleteFailure,
     required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
   }) {
     return initial(this);
   }
@@ -375,6 +542,8 @@ class _$Initial implements Initial {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
   }) {
     return initial?.call(this);
   }
@@ -386,6 +555,8 @@ class _$Initial implements Initial {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -444,6 +615,8 @@ class _$ActionInProgress implements ActionInProgress {
     required TResult Function() actionInProgress,
     required TResult Function(NoteFailure noteFailure) deleteFailure,
     required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
   }) {
     return actionInProgress();
   }
@@ -455,6 +628,8 @@ class _$ActionInProgress implements ActionInProgress {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
   }) {
     return actionInProgress?.call();
   }
@@ -466,6 +641,8 @@ class _$ActionInProgress implements ActionInProgress {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
     required TResult orElse(),
   }) {
     if (actionInProgress != null) {
@@ -481,6 +658,8 @@ class _$ActionInProgress implements ActionInProgress {
     required TResult Function(ActionInProgress value) actionInProgress,
     required TResult Function(DeleteFailure value) deleteFailure,
     required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
   }) {
     return actionInProgress(this);
   }
@@ -492,6 +671,8 @@ class _$ActionInProgress implements ActionInProgress {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
   }) {
     return actionInProgress?.call(this);
   }
@@ -503,6 +684,8 @@ class _$ActionInProgress implements ActionInProgress {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
     required TResult orElse(),
   }) {
     if (actionInProgress != null) {
@@ -595,6 +778,8 @@ class _$DeleteFailure implements DeleteFailure {
     required TResult Function() actionInProgress,
     required TResult Function(NoteFailure noteFailure) deleteFailure,
     required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
   }) {
     return deleteFailure(noteFailure);
   }
@@ -606,6 +791,8 @@ class _$DeleteFailure implements DeleteFailure {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
   }) {
     return deleteFailure?.call(noteFailure);
   }
@@ -617,6 +804,8 @@ class _$DeleteFailure implements DeleteFailure {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
     required TResult orElse(),
   }) {
     if (deleteFailure != null) {
@@ -632,6 +821,8 @@ class _$DeleteFailure implements DeleteFailure {
     required TResult Function(ActionInProgress value) actionInProgress,
     required TResult Function(DeleteFailure value) deleteFailure,
     required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
   }) {
     return deleteFailure(this);
   }
@@ -643,6 +834,8 @@ class _$DeleteFailure implements DeleteFailure {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
   }) {
     return deleteFailure?.call(this);
   }
@@ -654,6 +847,8 @@ class _$DeleteFailure implements DeleteFailure {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
     required TResult orElse(),
   }) {
     if (deleteFailure != null) {
@@ -717,6 +912,8 @@ class _$DeleteSuccess implements DeleteSuccess {
     required TResult Function() actionInProgress,
     required TResult Function(NoteFailure noteFailure) deleteFailure,
     required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
   }) {
     return deleteSuccess();
   }
@@ -728,6 +925,8 @@ class _$DeleteSuccess implements DeleteSuccess {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
   }) {
     return deleteSuccess?.call();
   }
@@ -739,6 +938,8 @@ class _$DeleteSuccess implements DeleteSuccess {
     TResult Function()? actionInProgress,
     TResult Function(NoteFailure noteFailure)? deleteFailure,
     TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
     required TResult orElse(),
   }) {
     if (deleteSuccess != null) {
@@ -754,6 +955,8 @@ class _$DeleteSuccess implements DeleteSuccess {
     required TResult Function(ActionInProgress value) actionInProgress,
     required TResult Function(DeleteFailure value) deleteFailure,
     required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
   }) {
     return deleteSuccess(this);
   }
@@ -765,6 +968,8 @@ class _$DeleteSuccess implements DeleteSuccess {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
   }) {
     return deleteSuccess?.call(this);
   }
@@ -776,6 +981,8 @@ class _$DeleteSuccess implements DeleteSuccess {
     TResult Function(ActionInProgress value)? actionInProgress,
     TResult Function(DeleteFailure value)? deleteFailure,
     TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
     required TResult orElse(),
   }) {
     if (deleteSuccess != null) {
@@ -787,4 +994,301 @@ class _$DeleteSuccess implements DeleteSuccess {
 
 abstract class DeleteSuccess implements NoteActorState {
   const factory DeleteSuccess() = _$DeleteSuccess;
+}
+
+/// @nodoc
+abstract class _$$StarSuccessCopyWith<$Res> {
+  factory _$$StarSuccessCopyWith(
+          _$StarSuccess value, $Res Function(_$StarSuccess) then) =
+      __$$StarSuccessCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StarSuccessCopyWithImpl<$Res>
+    extends _$NoteActorStateCopyWithImpl<$Res>
+    implements _$$StarSuccessCopyWith<$Res> {
+  __$$StarSuccessCopyWithImpl(
+      _$StarSuccess _value, $Res Function(_$StarSuccess) _then)
+      : super(_value, (v) => _then(v as _$StarSuccess));
+
+  @override
+  _$StarSuccess get _value => super._value as _$StarSuccess;
+}
+
+/// @nodoc
+
+class _$StarSuccess implements StarSuccess {
+  const _$StarSuccess();
+
+  @override
+  String toString() {
+    return 'NoteActorState.starSuccess()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StarSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() actionInProgress,
+    required TResult Function(NoteFailure noteFailure) deleteFailure,
+    required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
+  }) {
+    return starSuccess();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? actionInProgress,
+    TResult Function(NoteFailure noteFailure)? deleteFailure,
+    TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
+  }) {
+    return starSuccess?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? actionInProgress,
+    TResult Function(NoteFailure noteFailure)? deleteFailure,
+    TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
+    required TResult orElse(),
+  }) {
+    if (starSuccess != null) {
+      return starSuccess();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(ActionInProgress value) actionInProgress,
+    required TResult Function(DeleteFailure value) deleteFailure,
+    required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
+  }) {
+    return starSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(ActionInProgress value)? actionInProgress,
+    TResult Function(DeleteFailure value)? deleteFailure,
+    TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
+  }) {
+    return starSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(ActionInProgress value)? actionInProgress,
+    TResult Function(DeleteFailure value)? deleteFailure,
+    TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
+    required TResult orElse(),
+  }) {
+    if (starSuccess != null) {
+      return starSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StarSuccess implements NoteActorState {
+  const factory StarSuccess() = _$StarSuccess;
+}
+
+/// @nodoc
+abstract class _$$StarFailureCopyWith<$Res> {
+  factory _$$StarFailureCopyWith(
+          _$StarFailure value, $Res Function(_$StarFailure) then) =
+      __$$StarFailureCopyWithImpl<$Res>;
+  $Res call({NoteFailure noteFailure});
+
+  $NoteFailureCopyWith<$Res> get noteFailure;
+}
+
+/// @nodoc
+class __$$StarFailureCopyWithImpl<$Res>
+    extends _$NoteActorStateCopyWithImpl<$Res>
+    implements _$$StarFailureCopyWith<$Res> {
+  __$$StarFailureCopyWithImpl(
+      _$StarFailure _value, $Res Function(_$StarFailure) _then)
+      : super(_value, (v) => _then(v as _$StarFailure));
+
+  @override
+  _$StarFailure get _value => super._value as _$StarFailure;
+
+  @override
+  $Res call({
+    Object? noteFailure = freezed,
+  }) {
+    return _then(_$StarFailure(
+      noteFailure == freezed
+          ? _value.noteFailure
+          : noteFailure // ignore: cast_nullable_to_non_nullable
+              as NoteFailure,
+    ));
+  }
+
+  @override
+  $NoteFailureCopyWith<$Res> get noteFailure {
+    return $NoteFailureCopyWith<$Res>(_value.noteFailure, (value) {
+      return _then(_value.copyWith(noteFailure: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$StarFailure implements StarFailure {
+  const _$StarFailure(this.noteFailure);
+
+  @override
+  final NoteFailure noteFailure;
+
+  @override
+  String toString() {
+    return 'NoteActorState.starFailure(noteFailure: $noteFailure)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StarFailure &&
+            const DeepCollectionEquality()
+                .equals(other.noteFailure, noteFailure));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(noteFailure));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$StarFailureCopyWith<_$StarFailure> get copyWith =>
+      __$$StarFailureCopyWithImpl<_$StarFailure>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() actionInProgress,
+    required TResult Function(NoteFailure noteFailure) deleteFailure,
+    required TResult Function() deleteSuccess,
+    required TResult Function() starSuccess,
+    required TResult Function(NoteFailure noteFailure) starFailure,
+  }) {
+    return starFailure(noteFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? actionInProgress,
+    TResult Function(NoteFailure noteFailure)? deleteFailure,
+    TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
+  }) {
+    return starFailure?.call(noteFailure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? actionInProgress,
+    TResult Function(NoteFailure noteFailure)? deleteFailure,
+    TResult Function()? deleteSuccess,
+    TResult Function()? starSuccess,
+    TResult Function(NoteFailure noteFailure)? starFailure,
+    required TResult orElse(),
+  }) {
+    if (starFailure != null) {
+      return starFailure(noteFailure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(ActionInProgress value) actionInProgress,
+    required TResult Function(DeleteFailure value) deleteFailure,
+    required TResult Function(DeleteSuccess value) deleteSuccess,
+    required TResult Function(StarSuccess value) starSuccess,
+    required TResult Function(StarFailure value) starFailure,
+  }) {
+    return starFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(ActionInProgress value)? actionInProgress,
+    TResult Function(DeleteFailure value)? deleteFailure,
+    TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
+  }) {
+    return starFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(ActionInProgress value)? actionInProgress,
+    TResult Function(DeleteFailure value)? deleteFailure,
+    TResult Function(DeleteSuccess value)? deleteSuccess,
+    TResult Function(StarSuccess value)? starSuccess,
+    TResult Function(StarFailure value)? starFailure,
+    required TResult orElse(),
+  }) {
+    if (starFailure != null) {
+      return starFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StarFailure implements NoteActorState {
+  const factory StarFailure(final NoteFailure noteFailure) = _$StarFailure;
+
+  NoteFailure get noteFailure;
+  @JsonKey(ignore: true)
+  _$$StarFailureCopyWith<_$StarFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

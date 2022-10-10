@@ -19,16 +19,28 @@ class NoteActorBloc extends Bloc<NoteActorEvent, NoteActorState> {
   final INoteRepository _noteRepository;
 
   NoteActorBloc(this._noteRepository) : super(const NoteActorState.initial()) {
-    on<Deleted>((Deleted event, emit) {
+    on<Deleted>((Deleted event, emit) async {
         log.i('Received delete note request');
         emit(const ActionInProgress());
         
-        final possibleFailure = _noteRepository.delete(event.note);
+        final possibleFailure = await _noteRepository.delete(event.note);
 
-        // yield possibleFailure.fold(
-        //       (f) => NoteActorState.deleteFailure(f),
-        //       (_) => const NoteActorState.deleteSuccess(),
-        // );
+        possibleFailure.fold(
+              (failure) => NoteActorState.deleteFailure(failure),
+              (_) => const NoteActorState.deleteSuccess(),
+        );
+    });
+
+    on<Starred>((Starred event, emit) async {
+      log.i('Received star note request');
+      emit(const ActionInProgress());
+
+      final possibleFailure = await _noteRepository.star(event.note);
+
+      possibleFailure.fold(
+            (failure) => NoteActorState.starFailure(failure),
+            (_) => const NoteActorState.starSuccess(),
+      );
     });
   }
 }

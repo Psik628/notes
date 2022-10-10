@@ -54,7 +54,10 @@ class HomePage extends StatelessWidget {
                                   }),
                                   children: [
                                     SlidableAction(
-                                      onPressed: null,
+                                      onPressed: (context){
+                                        log.i('Deleting note from UI');
+                                        context.read<NoteActorBloc>().add(NoteActorEvent.deleted(state.notes[noteIndex]));
+                                      },
                                       backgroundColor: const Color(0xFFFE4A49),
                                       foregroundColor: Colors.white,
                                       icon: Icons.delete,
@@ -63,12 +66,15 @@ class HomePage extends StatelessWidget {
                                   ],
                                 ),
                                 endActionPane: ActionPane(
-                                  motion: DrawerMotion(),
+                                  motion: const DrawerMotion(),
                                   children: [
                                     SlidableAction(
-                                      onPressed: null,
+                                      onPressed: (context){
+                                        log.i('Staring note from UI');
+                                        context.read<NoteActorBloc>().add(NoteActorEvent.starred(state.notes[noteIndex]));
+                                      },
                                       backgroundColor: const Color(0xFFFE4A49),
-                                      foregroundColor: Colors.white,
+                                      foregroundColor: state.notes[noteIndex].star ? Colors.blue : Colors.white,
                                       icon: Icons.star,
                                       label: TranslationsConstants.star.tr(),
                                     ),

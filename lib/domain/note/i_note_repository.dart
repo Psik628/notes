@@ -9,4 +9,5 @@ abstract class INoteRepository{
   Future<Either<NoteFailure, Unit>> create(Note note);
   Future<Either<NoteFailure, Unit>> update(Note note);
   Future<Either<NoteFailure, Unit>> delete(Note note);
+  Future<Either<NoteFailure, Unit>> star(Note note);
 }

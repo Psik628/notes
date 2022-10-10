@@ -88,4 +88,29 @@ class NoteRepository extends INoteRepository{
       }
     });
   }
+
+  @override
+  Future<Either<NoteFailure, Unit>> star(Note note) async {
+    log.i('Starring Note');
+    try {
+      // final DocumentReference userDoc = await _firestore.userDocument();
+      final String noteId = note.id;
+
+      // await userDoc.noteCollection.doc(noteId).delete();
+
+      FirebaseFirestore.instance.collection('notes').doc(noteId).update({
+        'star': !note.star
+      });
+
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('PERMISSION_DENIED')) {
+        return left(const NoteFailure.insufficientPermission());
+      } else if (e.message!.contains('NOT_FOUND')) {
+        return left(const NoteFailure.unableToUpdate());
+      } else {
+        return left(const NoteFailure.unexpected());
+      }
+    }
+  }
 }
