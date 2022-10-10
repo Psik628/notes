@@ -11,9 +11,12 @@ import '../../../application/notes/note_actor/note_actor_bloc.dart';
 import '../../../application/notes/note_form/note_form_bloc.dart';
 import '../../../application/notes/note_watcher/note_watcher_bloc.dart';
 import '../../../injection.dart';
+import '../../../logging.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final log = logger(NoteActorBloc);
+
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class HomePage extends StatelessWidget {
                                 startActionPane: ActionPane(
                                   motion: const DrawerMotion(),
                                   dismissible: DismissiblePane(onDismissed: () {
+                                    log.i('Deleting note from UI');
                                     context.read<NoteActorBloc>().add(NoteActorEvent.deleted(state.notes[noteIndex]));
                                   }),
                                   children: [

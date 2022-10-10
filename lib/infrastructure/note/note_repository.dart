@@ -18,7 +18,7 @@ class NoteRepository extends INoteRepository{
   NoteRepository(this._firestore);
 
   @override
-  Future<Either<NoteFailure, void>> create(Note note) {
+  Future<Either<NoteFailure, Unit>> create(Note note) {
     // TODO: implement create
     throw UnimplementedError();
   }
@@ -46,6 +46,7 @@ class NoteRepository extends INoteRepository{
 
   @override
   Future<Either<NoteFailure, Unit>> delete(Note note) async {
+    log.i('Deleting Note');
     try {
       // final DocumentReference userDoc = await _firestore.userDocument();
       final String noteId = note.id;
