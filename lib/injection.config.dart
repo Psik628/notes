@@ -20,7 +20,7 @@ import 'domain/auth/i_auth_facade.dart' as _i6;
 import 'domain/note/i_note_repository.dart' as _i8;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
 import 'infrastructure/core/firebase_injectable_module.dart' as _i15;
-import 'infrastructure/subject/subject_repository.dart'
+import 'infrastructure/note/note_repository.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -46,7 +46,8 @@ _i1.GetIt $initGetIt(
         get<_i3.FirebaseAuth>(),
         get<_i5.GoogleSignIn>(),
       ));
-  gh.lazySingleton<_i8.INoteRepository>(() => _i9.SubjectRepository());
+  gh.lazySingleton<_i8.INoteRepository>(
+      () => _i9.NoteRepository(get<_i4.FirebaseFirestore>()));
   gh.factory<_i10.NoteActorBloc>(() => _i10.NoteActorBloc());
   gh.factory<_i11.NoteFormBloc>(() => _i11.NoteFormBloc());
   gh.factory<_i12.NoteWatcherBloc>(

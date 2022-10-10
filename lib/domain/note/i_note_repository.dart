@@ -5,4 +5,8 @@ import 'note.dart';
 
 abstract class INoteRepository{
   Stream<Either<NoteFailure, List<Note>>> watchAll();
+
+  Future<Either<NoteFailure, void>> create(Note note);
+  Future<Either<NoteFailure, void>> update(Note note);
+  Future<Either<NoteFailure, void>> delete(Note note);
 }

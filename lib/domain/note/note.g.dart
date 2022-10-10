@@ -127,6 +127,7 @@ abstract class NoteDocumentReference
   ///
   /// If no document exists yet, the update will fail.
   Future<void> update({
+    String id,
     String title,
     String? content,
     bool star,
@@ -138,6 +139,7 @@ abstract class NoteDocumentReference
   /// The update will fail if applied to a document that does not exist.
   void transactionUpdate(
     Transaction transaction, {
+    String id,
     String title,
     String? content,
     bool star,
@@ -189,12 +191,14 @@ class _$NoteDocumentReference
   }
 
   Future<void> update({
+    Object? id = _sentinel,
     Object? title = _sentinel,
     Object? content = _sentinel,
     Object? star = _sentinel,
     Object? deadline = _sentinel,
   }) async {
     final json = {
+      if (id != _sentinel) 'id': id as String,
       if (title != _sentinel) 'title': title as String,
       if (content != _sentinel) 'content': content as String?,
       if (star != _sentinel) 'star': star as bool,
@@ -206,12 +210,14 @@ class _$NoteDocumentReference
 
   void transactionUpdate(
     Transaction transaction, {
+    Object? id = _sentinel,
     Object? title = _sentinel,
     Object? content = _sentinel,
     Object? star = _sentinel,
     Object? deadline = _sentinel,
   }) {
     final json = {
+      if (id != _sentinel) 'id': id as String,
       if (title != _sentinel) 'title': title as String,
       if (content != _sentinel) 'content': content as String?,
       if (star != _sentinel) 'star': star as bool,
@@ -336,6 +342,17 @@ abstract class NoteQuery implements QueryReference<Note, NoteQuerySnapshot> {
     List<String>? whereIn,
     List<String>? whereNotIn,
   });
+  NoteQuery whereId({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  });
   NoteQuery whereTitle({
     String? isEqualTo,
     String? isNotEqualTo,
@@ -382,6 +399,18 @@ abstract class NoteQuery implements QueryReference<Note, NoteQuerySnapshot> {
   });
 
   NoteQuery orderByDocumentId({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
+    NoteDocumentSnapshot? startAtDocument,
+    NoteDocumentSnapshot? endAtDocument,
+    NoteDocumentSnapshot? endBeforeDocument,
+    NoteDocumentSnapshot? startAfterDocument,
+  });
+
+  NoteQuery orderById({
     bool descending = false,
     String startAt,
     String startAfter,
@@ -641,6 +670,35 @@ class _$NoteQuery extends QueryReference<Note, NoteQuerySnapshot>
     );
   }
 
+  NoteQuery whereId({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    bool? isNull,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+  }) {
+    return _$NoteQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        'id',
+        isEqualTo: isEqualTo,
+        isNotEqualTo: isNotEqualTo,
+        isLessThan: isLessThan,
+        isLessThanOrEqualTo: isLessThanOrEqualTo,
+        isGreaterThan: isGreaterThan,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo,
+        isNull: isNull,
+        whereIn: whereIn,
+        whereNotIn: whereNotIn,
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
   NoteQuery whereTitle({
     String? isEqualTo,
     String? isNotEqualTo,
@@ -769,6 +827,78 @@ class _$NoteQuery extends QueryReference<Note, NoteQuerySnapshot>
     NoteDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor.orderBy(FieldPath.documentId,
+        descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$NoteQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
+  NoteQuery orderById({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    NoteDocumentSnapshot? startAtDocument,
+    NoteDocumentSnapshot? endAtDocument,
+    NoteDocumentSnapshot? endBeforeDocument,
+    NoteDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy('id',
         descending: descending);
     var queryCursor = $queryCursor;
 
@@ -1166,6 +1296,7 @@ class NoteQueryDocumentSnapshot extends FirestoreQueryDocumentSnapshot<Note>
 // **************************************************************************
 
 Note _$NoteFromJson(Map<String, dynamic> json) => Note(
+      id: json['id'] as String,
       title: json['title'] as String,
       content: json['content'] as String?,
       deadline: dateTimeFromTimeStamp(json['deadline']),
@@ -1173,6 +1304,7 @@ Note _$NoteFromJson(Map<String, dynamic> json) => Note(
     );
 
 Map<String, dynamic> _$NoteToJson(Note instance) => <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'content': instance.content,
       'star': instance.star,

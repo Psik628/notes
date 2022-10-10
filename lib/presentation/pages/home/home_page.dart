@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:notes/application/theme/theme_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:notes/presentation/ui_constants.dart';
 import '../../../application/notes/note_actor/note_actor_bloc.dart';
 import '../../../application/notes/note_form/note_form_bloc.dart';
 import '../../../application/notes/note_watcher/note_watcher_bloc.dart';
@@ -22,16 +23,17 @@ class HomePage extends StatelessWidget {
         ],
         child: Scaffold(
             body: SafeArea(
-              minimum: EdgeInsets.all(20),
+              minimum: const EdgeInsets.symmetric(vertical: UIConstants.safeAreaPaddingVertical, horizontal: UIConstants.safeAreaPaddingHorizontal),
               child: BlocBuilder<ThemeBloc, ThemeState>(
                 builder: (context, ThemeState themeState) {
                   return BlocBuilder<NoteWatcherBloc, NoteWatcherState>(
                     builder: (context, NoteWatcherState noteWatcherState) {
                       return noteWatcherState.map(
-                        initial: (_) => const GFLoader(type: GFLoaderType.ios),
+                        initial: (_) => const GFLoader(type: GFLoaderType.android),
                         loadInProgress: (_) => const GFLoader(),
                         loadFailure: (LoadFailure value) {
-                          return const GFLoader(type: GFLoaderType.square);
+                          // todo return failure UI
+                          return const GFLoader(type: GFLoaderType.android);
                         },
                         loadSuccess: (LoadSuccess state) {
                           return ListView.builder(
@@ -41,15 +43,16 @@ class HomePage extends StatelessWidget {
                                 key: const ValueKey(0),
                                 startActionPane: ActionPane(
                                   motion: const DrawerMotion(),
-                                  dismissible: DismissiblePane(onDismissed: () {}),
-                                  children: [
+                                  dismissible: DismissiblePane(onDismissed: () {
+                                    context.read<NoteActorBloc>().add(NoteActorEvent.deleted(state.notes[noteIndex]));
+                                  }),
+                                  children: const [
                                     SlidableAction(
-                                      // todo on pressed unstar this todo
                                       onPressed: null,
-                                      backgroundColor: Colors.blue,
-                                      foregroundColor: state.notes[noteIndex].star ?  Colors.red : Colors.white,
-                                      icon: Icons.star,
-                                      label: 'Highlight',
+                                      backgroundColor: Color(0xFFFE4A49),
+                                      foregroundColor: Colors.white,
+                                      icon: Icons.delete,
+                                      label: 'Delete',
                                     ),
                                   ],
                                 ),
