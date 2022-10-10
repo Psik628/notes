@@ -72,6 +72,8 @@ class HomePage extends StatelessWidget {
                                       onPressed: (context){
                                         log.i('Staring note from UI');
                                         context.read<NoteActorBloc>().add(NoteActorEvent.starred(state.notes[noteIndex]));
+                                        // todo show confirm dialog after deletion
+                                        // showDialog(context: context, builder: (_) => AlertDialog());
                                       },
                                       backgroundColor: const Color(0xFFFE4A49),
                                       foregroundColor: state.notes[noteIndex].star ? Colors.blue : Colors.white,

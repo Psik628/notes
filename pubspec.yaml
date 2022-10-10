@@ -46,6 +46,7 @@ dependencies:
   flutter_slidable: 2.0.0
   responsive_framework: ^0.2.0
   introduction_screen: ^3.0.1
+  mockito: ^5.3.2
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ dev_dependencies:
   freezed: ^2.1.0+1
   cloud_firestore_odm_generator: ^1.0.0-dev.28
   json_serializable: ^6.3.1
+  bloc_test: ^9.1.0
 
 flutter:
   uses-material-design: true
