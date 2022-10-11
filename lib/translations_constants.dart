@@ -32,4 +32,6 @@ class TranslationsConstants{
 
   static const delete = 'delete';
   static const star = 'star';
+
+  static const addNewNote = 'addNewNote';
 }
