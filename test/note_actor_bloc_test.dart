@@ -16,6 +16,15 @@ class MockNoteRepository extends Mock  implements NoteRepository{
       return left(const NoteFailure.unableToDelete());
     }
   }
+
+  @override
+  Future<Either<NoteFailure, Unit>> star(Note note) async {
+    if(note.title == 'title1'){
+      return right(unit);
+    }else{
+      return left(const NoteFailure.unableToUpdate());
+    }
+  }
 }
 
 void main(){
@@ -52,6 +61,32 @@ void main(){
     expect: () => [
       const NoteActorState.actionInProgress(),
       const NoteActorState.deleteFailure(NoteFailure.unableToDelete()),
+    ],
+  );
+
+  blocTest('NoteActorBloc note star failure',
+    build: (){
+      return NoteActorBloc(mockNoteRepository);
+    },
+    act: (bloc){
+      bloc.add(NoteActorEvent.starred(note2));
+    },
+    expect: () => [
+      const NoteActorState.actionInProgress(),
+      const NoteActorState.starFailure(NoteFailure.unableToUpdate()),
+    ],
+  );
+
+  blocTest('NoteActorBloc note star success',
+    build: (){
+      return NoteActorBloc(mockNoteRepository);
+    },
+    act: (bloc){
+      bloc.add(NoteActorEvent.starred(note1));
+    },
+    expect: () => [
+      const NoteActorState.actionInProgress(),
+      const NoteActorState.starSuccess()
     ],
   );
 }

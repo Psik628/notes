@@ -46,9 +46,17 @@ class NoteActorBloc extends Bloc<NoteActorEvent, NoteActorState> {
       final possibleFailure = await _noteRepository.star(event.note);
 
       possibleFailure.fold(
-            (failure) => NoteActorState.starFailure(failure),
-            (_) => const NoteActorState.starSuccess(),
+          (failure){
+            log.e('Note star failure');
+            emit(NoteActorState.starFailure(failure));
+          },
+          (_){
+            log.i('Note star success');
+            emit(const NoteActorState.starSuccess());
+          }
       );
+
+      log.i('Completed star note request');
     });
   }
 }
