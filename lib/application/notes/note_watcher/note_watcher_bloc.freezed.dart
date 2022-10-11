@@ -19,21 +19,21 @@ mixin _$NoteWatcherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchAll,
-    required TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)
+    required TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)
         notesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)?
+    TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)?
         notesReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)?
+    TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)?
         notesReceived,
     required TResult orElse(),
   }) =>
@@ -118,7 +118,7 @@ class _$WatchAllStarted implements WatchAllStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchAll,
-    required TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)
+    required TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)
         notesReceived,
   }) {
     return watchAll();
@@ -128,7 +128,7 @@ class _$WatchAllStarted implements WatchAllStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)?
+    TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)?
         notesReceived,
   }) {
     return watchAll?.call();
@@ -138,7 +138,7 @@ class _$WatchAllStarted implements WatchAllStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)?
+    TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)?
         notesReceived,
     required TResult orElse(),
   }) {
@@ -189,7 +189,7 @@ abstract class _$$NotesReceivedCopyWith<$Res> {
   factory _$$NotesReceivedCopyWith(
           _$NotesReceived value, $Res Function(_$NotesReceived) then) =
       __$$NotesReceivedCopyWithImpl<$Res>;
-  $Res call({Either<NoteFailure, List<Note>> failureOrSubjects});
+  $Res call({Either<NoteFailure, List<Note>> failureOrNotes});
 }
 
 /// @nodoc
@@ -205,12 +205,12 @@ class __$$NotesReceivedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? failureOrSubjects = freezed,
+    Object? failureOrNotes = freezed,
   }) {
     return _then(_$NotesReceived(
-      failureOrSubjects == freezed
-          ? _value.failureOrSubjects
-          : failureOrSubjects // ignore: cast_nullable_to_non_nullable
+      failureOrNotes == freezed
+          ? _value.failureOrNotes
+          : failureOrNotes // ignore: cast_nullable_to_non_nullable
               as Either<NoteFailure, List<Note>>,
     ));
   }
@@ -219,14 +219,14 @@ class __$$NotesReceivedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NotesReceived implements NotesReceived {
-  const _$NotesReceived(this.failureOrSubjects);
+  const _$NotesReceived(this.failureOrNotes);
 
   @override
-  final Either<NoteFailure, List<Note>> failureOrSubjects;
+  final Either<NoteFailure, List<Note>> failureOrNotes;
 
   @override
   String toString() {
-    return 'NoteWatcherEvent.notesReceived(failureOrSubjects: $failureOrSubjects)';
+    return 'NoteWatcherEvent.notesReceived(failureOrNotes: $failureOrNotes)';
   }
 
   @override
@@ -235,12 +235,12 @@ class _$NotesReceived implements NotesReceived {
         (other.runtimeType == runtimeType &&
             other is _$NotesReceived &&
             const DeepCollectionEquality()
-                .equals(other.failureOrSubjects, failureOrSubjects));
+                .equals(other.failureOrNotes, failureOrNotes));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(failureOrSubjects));
+      runtimeType, const DeepCollectionEquality().hash(failureOrNotes));
 
   @JsonKey(ignore: true)
   @override
@@ -251,32 +251,32 @@ class _$NotesReceived implements NotesReceived {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchAll,
-    required TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)
+    required TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)
         notesReceived,
   }) {
-    return notesReceived(failureOrSubjects);
+    return notesReceived(failureOrNotes);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)?
+    TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)?
         notesReceived,
   }) {
-    return notesReceived?.call(failureOrSubjects);
+    return notesReceived?.call(failureOrNotes);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchAll,
-    TResult Function(Either<NoteFailure, List<Note>> failureOrSubjects)?
+    TResult Function(Either<NoteFailure, List<Note>> failureOrNotes)?
         notesReceived,
     required TResult orElse(),
   }) {
     if (notesReceived != null) {
-      return notesReceived(failureOrSubjects);
+      return notesReceived(failureOrNotes);
     }
     return orElse();
   }
@@ -315,10 +315,9 @@ class _$NotesReceived implements NotesReceived {
 
 abstract class NotesReceived implements NoteWatcherEvent {
   const factory NotesReceived(
-          final Either<NoteFailure, List<Note>> failureOrSubjects) =
-      _$NotesReceived;
+      final Either<NoteFailure, List<Note>> failureOrNotes) = _$NotesReceived;
 
-  Either<NoteFailure, List<Note>> get failureOrSubjects;
+  Either<NoteFailure, List<Note>> get failureOrNotes;
   @JsonKey(ignore: true)
   _$$NotesReceivedCopyWith<_$NotesReceived> get copyWith =>
       throw _privateConstructorUsedError;

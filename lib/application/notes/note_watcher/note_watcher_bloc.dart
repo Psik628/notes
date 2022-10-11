@@ -39,7 +39,7 @@ class NoteWatcherBloc extends Bloc<NoteWatcherEvent, NoteWatcherState> {
     });
 
     on<NotesReceived>((NotesReceived event, emit) async {
-      event.failureOrSubjects.fold(
+      event.failureOrNotes.fold(
         (NoteFailure failure) => {
         log.e('notes loaded unsuccessfully'),
           emit(NoteWatcherState.loadFailure(failure))
