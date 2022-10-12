@@ -50,7 +50,8 @@ _i1.GetIt $initGetIt(
       () => _i9.NoteRepository(get<_i4.FirebaseFirestore>()));
   gh.factory<_i10.NoteActorBloc>(
       () => _i10.NoteActorBloc(get<_i8.INoteRepository>()));
-  gh.factory<_i11.NoteFormBloc>(() => _i11.NoteFormBloc());
+  gh.factory<_i11.NoteFormBloc>(
+      () => _i11.NoteFormBloc(get<_i8.INoteRepository>()));
   gh.factory<_i12.NoteWatcherBloc>(
       () => _i12.NoteWatcherBloc(get<_i8.INoteRepository>()));
   gh.factory<_i13.ThemeBloc>(() => _i13.ThemeBloc());

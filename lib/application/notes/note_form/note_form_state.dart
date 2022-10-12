@@ -1,6 +1,9 @@
 part of 'note_form_bloc.dart';
 
-@immutable
-abstract class NoteFormState {}
-
-class NoteFormInitial extends NoteFormState {}
+@freezed
+class NoteFormState with _$NoteFormState {
+  const factory NoteFormState.initial() = Initial;
+  const factory NoteFormState.actionInProgress() = ActionInProgress;
+  const factory NoteFormState.noteAdditionSuccess() = NoteAdditionSuccess;
+  const factory NoteFormState.noteAdditionFailure(NoteFailure noteFailure) = NoteAdditionFailure;
+}

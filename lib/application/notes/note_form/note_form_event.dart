@@ -1,4 +1,7 @@
 part of 'note_form_bloc.dart';
 
-@immutable
-abstract class NoteFormEvent {}
+
+@freezed
+class NoteFormEvent with _$NoteFormEvent{
+  const factory NoteFormEvent.noteAdded(Note note) = NoteAdded;
+}

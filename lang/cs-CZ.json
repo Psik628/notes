@@ -24,5 +24,6 @@
 
   "delete": "Smazat",
   "star": "Favorizovat",
-  "addNewNote": "Přidat novou poznámku"
+  "addNewNote": "Přidat novou poznámku",
+  "deadline": "Termín splnění"
 }

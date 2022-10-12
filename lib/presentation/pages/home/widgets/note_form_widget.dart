@@ -14,7 +14,7 @@ class NoteFormWidget extends StatelessWidget {
     return GFButton(
       fullWidthButton: true,
       onPressed: (){
-        AutoRouter.of(context).push(const NoteFormPageRoute());
+        AutoRouter.of(context).push(NoteFormPageRoute());
       },
       icon: const Icon(Icons.add),
       child: const Text(TranslationsConstants.addNewNote).tr(),

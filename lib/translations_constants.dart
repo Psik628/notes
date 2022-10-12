@@ -34,4 +34,5 @@ class TranslationsConstants{
   static const star = 'star';
 
   static const addNewNote = 'addNewNote';
+  static const deadline = 'deadline';
 }

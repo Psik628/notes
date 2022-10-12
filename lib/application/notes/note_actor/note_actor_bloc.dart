@@ -26,14 +26,14 @@ class NoteActorBloc extends Bloc<NoteActorEvent, NoteActorState> {
         final possibleFailure = await _noteRepository.delete(event.note);
 
         possibleFailure.fold(
-            (failure){
-              log.e('Note delete failure');
-              emit(NoteActorState.deleteFailure(failure));
-            },
-            (_){
-              log.i('Note delete success');
-              emit(const NoteActorState.deleteSuccess());
-            }
+          (failure){
+            log.e('Note delete failure');
+            emit(NoteActorState.deleteFailure(failure));
+          },
+          (_){
+            log.i('Note delete success');
+            emit(const NoteActorState.deleteSuccess());
+          }
         );
 
         log.i('Completed delete note request');
